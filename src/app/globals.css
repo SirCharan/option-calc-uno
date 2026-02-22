@@ -7,8 +7,9 @@
   --color-terminal-darkred: #330000;
   --color-terminal-amber: #FFBF00;
   --color-terminal-black: #000000;
-  --color-terminal-gray: #1a1a1a;
+  --color-terminal-gray: #111111;
   --color-terminal-dimgreen: #00AA00;
+  --color-terminal-border: rgba(0, 255, 0, 0.12);
 
   --font-mono: "Consolas", "Courier New", ui-monospace, monospace;
 
@@ -27,13 +28,37 @@
   50% { opacity: 0.5; }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scanline overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
 * {
   scrollbar-width: thin;
-  scrollbar-color: #00FF00 #000000;
+  scrollbar-color: #003300 #000000;
 }
 
 *::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 *::-webkit-scrollbar-track {
@@ -46,13 +71,27 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: #00FF00;
+  background: #00AA00;
 }
 
 body {
   background: #000000;
   color: #00FF00;
   font-family: "Consolas", "Courier New", ui-monospace, monospace;
+}
+
+input, select, button, textarea {
+  transition: all 0.15s ease;
+}
+
+/* Number input spinner hide */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 /* react-datepicker terminal theme overrides */

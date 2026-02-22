@@ -32,81 +32,92 @@ export function ResultsConsole({ result, error }: ResultsConsoleProps) {
       i++;
       setVisibleLines(i);
       if (i >= LINES.length + 2) clearInterval(interval);
-    }, 60);
+    }, 50);
     return () => clearInterval(interval);
   }, [result]);
 
   if (error) {
     return (
-      <div className="space-y-2">
-        <div className="text-terminal-dimgreen text-xs">
+      <div className="space-y-3 min-h-[200px] flex flex-col justify-center items-center">
+        <div className="text-terminal-dimgreen/50 text-xs">
           &gt; AWAITING VALID INPUT...
         </div>
-        <div className="text-terminal-red text-xs">[ERROR]: {error}</div>
-        <span className="inline-block w-2 h-4 bg-terminal-green/70 animate-cursor-blink" />
+        <div className="text-terminal-red/80 text-xs">[ERROR]: {error}</div>
+        <span className="inline-block w-2 h-4 bg-terminal-green/50 animate-cursor-blink" />
       </div>
     );
   }
 
   if (!result) {
     return (
-      <div className="space-y-2">
-        <div className="text-terminal-dimgreen text-xs">
+      <div className="space-y-3 min-h-[200px] flex flex-col justify-center items-center">
+        <div className="text-terminal-dimgreen/40 text-xs">
           &gt; AWAITING INPUT...
         </div>
-        <div className="text-terminal-dimgreen text-xs">
-          &gt; Enter parameters to calculate option price and Greeks.
+        <div className="text-terminal-dimgreen/30 text-[11px]">
+          Enter parameters to calculate option price and Greeks
         </div>
-        <span className="inline-block w-2 h-4 bg-terminal-green/70 animate-cursor-blink" />
+        <span className="inline-block w-2 h-4 bg-terminal-green/40 animate-cursor-blink" />
       </div>
     );
   }
 
-  const values: Record<string, { display: string; raw: number }> = {
-    OPTION_PRICE: { display: formatUSD(result.price), raw: result.price },
-    DELTA: { display: formatNumber(result.delta), raw: result.delta },
-    GAMMA: { display: formatNumber(result.gamma, 6), raw: result.gamma },
-    THETA: { display: formatNumber(result.theta), raw: result.theta },
-    VEGA: { display: formatNumber(result.vega), raw: result.vega },
-    RHO: { display: formatNumber(result.rho), raw: result.rho },
+  const values: Record<string, { display: string; raw: number; unit: string }> = {
+    OPTION_PRICE: { display: formatUSD(result.price), raw: result.price, unit: '' },
+    DELTA: { display: formatNumber(result.delta), raw: result.delta, unit: '' },
+    GAMMA: { display: formatNumber(result.gamma, 6), raw: result.gamma, unit: '' },
+    THETA: { display: formatNumber(result.theta), raw: result.theta, unit: '/day' },
+    VEGA: { display: formatNumber(result.vega), raw: result.vega, unit: '/1%' },
+    RHO: { display: formatNumber(result.rho), raw: result.rho, unit: '/1%' },
   };
 
   return (
-    <div className="space-y-1 text-xs">
+    <div className="space-y-1.5 text-xs font-mono">
       {visibleLines >= 1 && (
-        <div className="text-terminal-green">
-          &gt; CALCULATING BLACK-SCHOLES...
+        <div className="text-terminal-green/60 text-[10px] tracking-wider">
+          CALCULATING BLACK-SCHOLES...
         </div>
       )}
       {visibleLines >= 2 && (
-        <div className="text-terminal-green/50">
-          &gt; {'─'.repeat(35)}
-        </div>
+        <div className="border-b border-terminal-green/10 mb-1" />
       )}
       {LINES.map((line, i) => {
         if (visibleLines < i + 3) return null;
         const val = values[line];
         const isNeg = val.raw < 0;
         return (
-          <div key={line} className="flex justify-between">
-            <span className="text-terminal-dimgreen">
-              &gt; {line.padEnd(16)}
+          <div
+            key={line}
+            className="flex items-baseline justify-between py-0.5 animate-[fadeIn_0.2s_ease]"
+          >
+            <span className="text-terminal-dimgreen/70 text-[11px]">
+              {line}
             </span>
-            <span className={isNeg ? 'text-terminal-red' : 'text-terminal-green'}>
-              {val.display}
-            </span>
+            <div className="flex items-baseline gap-1">
+              <span
+                className={`text-sm tabular-nums ${
+                  isNeg ? 'text-terminal-red' : 'text-terminal-green'
+                }`}
+              >
+                {val.display}
+              </span>
+              {val.unit && (
+                <span className="text-terminal-dimgreen/40 text-[9px]">
+                  {val.unit}
+                </span>
+              )}
+            </div>
           </div>
         );
       })}
       {visibleLines >= LINES.length + 2 && (
         <>
-          <div className="text-terminal-green/50">
-            &gt; {'─'.repeat(35)}
+          <div className="border-b border-terminal-green/10 mt-1" />
+          <div className="text-terminal-green/50 text-[10px] tracking-wider">
+            STATUS: OK
           </div>
-          <div className="text-terminal-green">&gt; STATUS: OK</div>
         </>
       )}
-      <span className="inline-block w-2 h-4 bg-terminal-green/70 animate-cursor-blink" />
     </div>
   );
 }

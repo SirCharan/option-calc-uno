@@ -15,17 +15,17 @@ export function TerminalContainer({
 }: TerminalContainerProps) {
   return (
     <div
-      className={`border border-terminal-green/20 bg-terminal-gray/30 ${className}`}
+      className={`border border-terminal-border bg-terminal-gray/20 overflow-hidden ${className}`}
     >
-      <div className="flex items-center gap-2 px-3 py-2 border-b border-terminal-green/20 bg-terminal-gray/50">
-        <span className="w-2.5 h-2.5 rounded-full bg-terminal-red/70" />
-        <span className="w-2.5 h-2.5 rounded-full bg-terminal-amber/70" />
-        <span className="w-2.5 h-2.5 rounded-full bg-terminal-green/70" />
-        <span className="text-terminal-dimgreen text-xs ml-2 tracking-wider">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-terminal-border bg-terminal-gray/40">
+        <span className="w-2 h-2 rounded-full bg-terminal-red/60" />
+        <span className="w-2 h-2 rounded-full bg-terminal-amber/60" />
+        <span className="w-2 h-2 rounded-full bg-terminal-green/60" />
+        <span className="text-terminal-dimgreen/70 text-[10px] ml-2 tracking-widest uppercase">
           {title}
         </span>
       </div>
-      <div className="p-4">{children}</div>
+      <div className="p-5">{children}</div>
     </div>
   );
 }

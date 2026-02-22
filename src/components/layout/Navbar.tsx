@@ -7,33 +7,33 @@ export function Navbar() {
   const pathname = usePathname();
 
   const links = [
-    { href: '/', label: 'OPTIONS_CALCULATOR' },
-    { href: '/payoff', label: 'PAYOFF_DISPLAY' },
+    { href: '/', label: 'CALCULATOR' },
+    { href: '/payoff', label: 'PAYOFF' },
   ];
 
   return (
-    <nav className="border-b border-terminal-green/20 px-6 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-terminal-dimgreen text-xs">
-            user@options-calc:~$
+    <nav className="border-b border-terminal-border px-4 sm:px-6 py-3 bg-terminal-gray/40">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <span className="text-terminal-green text-sm font-bold tracking-widest">
+            OPTIONS_PRO
           </span>
-          <span className="text-terminal-green text-sm font-bold tracking-wider">
-            OPTIONS_CALCULATOR_PRO
+          <span className="text-terminal-dimgreen/50 text-[10px] hidden sm:inline">
+            v1.0
           </span>
-        </div>
-        <div className="flex items-center gap-4">
+        </Link>
+        <div className="flex items-center gap-1">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-xs font-mono transition-all ${
+              className={`text-xs font-mono px-3 py-1.5 border transition-all ${
                 pathname === link.href
-                  ? 'text-terminal-green border-b border-terminal-green shadow-[0_2px_4px_rgba(0,255,0,0.2)]'
-                  : 'text-terminal-dimgreen hover:text-terminal-green'
+                  ? 'text-terminal-green border-terminal-green/30 bg-terminal-green/5'
+                  : 'text-terminal-dimgreen border-transparent hover:text-terminal-green hover:border-terminal-green/20'
               }`}
             >
-              &gt; {link.label}
+              {link.label}
             </Link>
           ))}
         </div>

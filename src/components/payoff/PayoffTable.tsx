@@ -11,7 +11,6 @@ interface PayoffTableProps {
 export function PayoffTable({ result, legCount }: PayoffTableProps) {
   if (!result || result.points.length === 0) return null;
 
-  // Show ~20 representative points
   const step = Math.max(1, Math.floor(result.points.length / 20));
   const rows = result.points.filter(
     (_, i) => i % step === 0 || i === result.points.length - 1,
@@ -21,20 +20,20 @@ export function PayoffTable({ result, legCount }: PayoffTableProps) {
     <div className="overflow-x-auto">
       <table className="w-full text-xs font-mono">
         <thead>
-          <tr className="border-b border-terminal-green/30">
-            <th className="text-left text-terminal-dimgreen px-2 py-1">
+          <tr className="border-b border-terminal-green/20">
+            <th className="text-left text-terminal-dimgreen/60 px-3 py-2 text-[10px] tracking-wider">
               SPOT
             </th>
             {Array.from({ length: legCount }).map((_, i) => (
               <th
                 key={i}
-                className="text-right text-terminal-dimgreen px-2 py-1"
+                className="text-right text-terminal-dimgreen/60 px-3 py-2 text-[10px] tracking-wider"
               >
                 LEG_{i + 1}
               </th>
             ))}
-            <th className="text-right text-terminal-dimgreen px-2 py-1">
-              TOTAL P/L
+            <th className="text-right text-terminal-dimgreen/60 px-3 py-2 text-[10px] tracking-wider">
+              TOTAL
             </th>
           </tr>
         </thead>
@@ -42,16 +41,18 @@ export function PayoffTable({ result, legCount }: PayoffTableProps) {
           {rows.map((row, ri) => (
             <tr
               key={ri}
-              className="border-b border-terminal-green/10 hover:bg-terminal-green/5"
+              className={`border-b border-terminal-green/5 hover:bg-terminal-green/5 transition-colors ${
+                ri % 2 === 0 ? 'bg-terminal-gray/20' : ''
+              }`}
             >
-              <td className="text-terminal-dimgreen px-2 py-1">
+              <td className="text-terminal-dimgreen/70 px-3 py-1.5 tabular-nums">
                 {formatUSD(row.spotPrice)}
               </td>
               {row.legPayoffs.map((lp, li) => (
                 <td
                   key={li}
-                  className={`text-right px-2 py-1 ${
-                    lp >= 0 ? 'text-terminal-green' : 'text-terminal-red'
+                  className={`text-right px-3 py-1.5 tabular-nums ${
+                    lp >= 0 ? 'text-terminal-green/80' : 'text-terminal-red/80'
                   }`}
                 >
                   {lp >= 0 ? '' : '-'}
@@ -59,7 +60,7 @@ export function PayoffTable({ result, legCount }: PayoffTableProps) {
                 </td>
               ))}
               <td
-                className={`text-right px-2 py-1 font-bold ${
+                className={`text-right px-3 py-1.5 tabular-nums font-bold ${
                   row.totalPayoff >= 0
                     ? 'text-terminal-green'
                     : 'text-terminal-red'

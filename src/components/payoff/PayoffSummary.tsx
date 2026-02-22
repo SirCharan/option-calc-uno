@@ -10,9 +10,9 @@ interface PayoffSummaryProps {
 export function PayoffSummary({ result }: PayoffSummaryProps) {
   if (!result) return null;
 
-  const lines = [
+  const items = [
     {
-      label: 'MAX_PROFIT',
+      label: 'MAX PROFIT',
       value:
         result.maxProfit === 'Unlimited'
           ? 'Unlimited'
@@ -23,7 +23,7 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
           : 'text-terminal-red',
     },
     {
-      label: 'MAX_LOSS',
+      label: 'MAX LOSS',
       value:
         result.maxLoss === 'Unlimited'
           ? 'Unlimited'
@@ -31,25 +31,27 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
       color: 'text-terminal-red',
     },
     ...result.breakevens.map((b, i) => ({
-      label: `BREAKEVEN_${i + 1}`,
+      label: `BREAKEVEN${result.breakevens.length > 1 ? ` ${i + 1}` : ''}`,
       value: formatUSD(b),
       color: 'text-terminal-amber',
     })),
   ];
 
   return (
-    <div className="border border-terminal-green/30 font-mono text-xs">
-      <div className="px-3 py-1 border-b border-terminal-green/20 text-terminal-dimgreen">
-        STRATEGY_SUMMARY
-      </div>
-      <div className="p-3 space-y-1">
-        {lines.map((line) => (
-          <div key={line.label} className="flex justify-between">
-            <span className="text-terminal-dimgreen">{line.label}:</span>
-            <span className={line.color}>{line.value}</span>
+    <div className="flex flex-wrap gap-3">
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="border border-terminal-border px-4 py-2.5 bg-terminal-gray/20 flex-1 min-w-[140px]"
+        >
+          <div className="text-terminal-dimgreen/50 text-[9px] tracking-widest mb-1">
+            {item.label}
           </div>
-        ))}
-      </div>
+          <div className={`text-sm font-bold tabular-nums ${item.color}`}>
+            {item.value}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

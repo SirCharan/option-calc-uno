@@ -27,7 +27,7 @@ export function CalculatorForm() {
     <div className="flex flex-col lg:flex-row gap-6">
       <div className="lg:w-1/2">
         <TerminalContainer title="INPUT_PARAMETERS">
-          <div className="space-y-4">
+          <div className="space-y-5">
             <SpotPriceInput
               value={ctx.spotPrice}
               onChange={ctx.setSpotPrice}
@@ -38,6 +38,7 @@ export function CalculatorForm() {
               value={ctx.strikePrice}
               onChange={ctx.setStrikePrice}
             />
+            <div className="border-b border-terminal-border" />
             <RiskFreeRateInput
               value={ctx.riskFreeRate}
               onChange={ctx.setRiskFreeRate}
@@ -47,6 +48,7 @@ export function CalculatorForm() {
               onChange={ctx.setImpliedVolatility}
               currency={ctx.currency}
             />
+            <div className="border-b border-terminal-border" />
             <TimeToExpiry
               value={ctx.timeToExpiry}
               onChange={ctx.setTimeToExpiry}
