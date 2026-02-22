@@ -31,6 +31,6 @@ async def get_dvol(currency: str) -> dict:
     return {
         "currency": currency.upper(),
         "dvol": dvol_value,
-        "dvol_decimal": dvol_value / 100.0,
+        "dvol_decimal": round(dvol_value / 100.0, 6),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
