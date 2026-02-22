@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-terminal-green: #00FF00;
+  --color-terminal-darkgreen: #003300;
+  --color-terminal-red: #FF4444;
+  --color-terminal-darkred: #330000;
+  --color-terminal-amber: #FFBF00;
+  --color-terminal-black: #000000;
+  --color-terminal-gray: #1a1a1a;
+  --color-terminal-dimgreen: #00AA00;
+
+  --font-mono: "Consolas", "Courier New", ui-monospace, monospace;
+
+  --animate-cursor-blink: blink 1s step-end infinite;
+  --animate-pulse-green: pulseGreen 2s ease-in-out infinite;
+  --animate-spin-slow: spin 1s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00FF00 #000000;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #003300;
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #00FF00;
+}
+
+body {
+  background: #000000;
+  color: #00FF00;
+  font-family: "Consolas", "Courier New", ui-monospace, monospace;
+}
+
+/* react-datepicker terminal theme overrides */
+.react-datepicker {
+  background-color: #000 !important;
+  border: 1px solid rgba(0, 255, 0, 0.3) !important;
+  font-family: "Consolas", "Courier New", monospace !important;
+  color: #00FF00 !important;
+}
+
+.react-datepicker__header {
+  background-color: #0a0a0a !important;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.2) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__day {
+  color: #00FF00 !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(0, 255, 0, 0.2) !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #00FF00 !important;
+  color: #000 !important;
+}
+
+.react-datepicker__day--disabled {
+  color: #333 !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #00FF00 !important;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
