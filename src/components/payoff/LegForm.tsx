@@ -25,6 +25,29 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
 
   const hasCustomPremium = customPremium !== '' && parseFloat(customPremium) >= 0;
 
+  const canCalcPremium =
+    strikePrice > 0 &&
+    sharedParams.spotPrice > 0 &&
+    sharedParams.impliedVolatility > 0 &&
+    sharedParams.timeToExpiry > 0;
+
+  const handleFetchPremium = () => {
+    setError(null);
+    if (!canCalcPremium) {
+      setError('Set strike and shared parameters (spot, IV, expiry) to fetch premium');
+      return;
+    }
+    const price = calculateOption({
+      spotPrice: sharedParams.spotPrice,
+      strikePrice,
+      riskFreeRate: sharedParams.riskFreeRate,
+      impliedVolatility: sharedParams.impliedVolatility,
+      timeToExpiry: sharedParams.timeToExpiry,
+      optionType,
+    }).price;
+    setCustomPremium(price.toFixed(2));
+  };
+
   const handleAdd = () => {
     if (strikePrice <= 0) {
       setError('Strike price must be positive');
@@ -120,14 +143,19 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
             min={1}
           />
         </div>
-        <TerminalInput
-          label="PREMIUM"
-          value={customPremium}
-          onChange={setCustomPremium}
-          type="number"
-          placeholder="auto"
-          step="0.01"
-        />
+        <div className="space-y-1.5">
+          <TerminalInput
+            label="PREMIUM"
+            value={customPremium}
+            onChange={setCustomPremium}
+            type="number"
+            placeholder="auto"
+            step="0.01"
+          />
+          <TerminalButton size="sm" onClick={handleFetchPremium} disabled={hasCustomPremium}>
+            FETCH
+          </TerminalButton>
+        </div>
       </div>
 
       {error && <ErrorMessage message={error} />}
