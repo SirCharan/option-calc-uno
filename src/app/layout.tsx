@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-mono antialiased min-h-screen bg-black text-terminal-green">
+      <body className="font-mono antialiased min-h-screen bg-bg-primary text-text-primary">
         <OptionsProvider>
           <Navbar />
           {children}

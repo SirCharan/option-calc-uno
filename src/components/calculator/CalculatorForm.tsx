@@ -38,7 +38,7 @@ export function CalculatorForm() {
               value={ctx.strikePrice}
               onChange={ctx.setStrikePrice}
             />
-            <div className="border-b border-terminal-border" />
+            <div className="border-b border-border" />
             <RiskFreeRateInput
               value={ctx.riskFreeRate}
               onChange={ctx.setRiskFreeRate}
@@ -48,7 +48,7 @@ export function CalculatorForm() {
               onChange={ctx.setImpliedVolatility}
               currency={ctx.currency}
             />
-            <div className="border-b border-terminal-border" />
+            <div className="border-b border-border" />
             <TimeToExpiry
               value={ctx.timeToExpiry}
               onChange={ctx.setTimeToExpiry}

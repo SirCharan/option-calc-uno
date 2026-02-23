@@ -18,19 +18,19 @@ export function TerminalToggle({
       type="button"
       onClick={() => !disabled && onChange(!checked)}
       disabled={disabled}
-      className={`flex items-center gap-2 text-xs font-mono px-2 py-1 border transition-all ${
+      className={`flex items-center gap-2 text-xs font-mono px-2 py-1 border rounded transition-all ${
         checked
-          ? 'border-terminal-green bg-terminal-green/10 text-terminal-green shadow-[0_0_5px_rgba(0,255,0,0.2)]'
-          : 'border-terminal-green/30 text-terminal-dimgreen hover:border-terminal-green/50'
+          ? 'border-accent/40 bg-accent/10 text-accent'
+          : 'border-border text-text-muted hover:border-border-hover hover:text-text-secondary'
       } disabled:opacity-30 disabled:cursor-not-allowed`}
     >
       <span
         className={`inline-block w-2 h-2 rounded-full ${
-          checked ? 'bg-terminal-green animate-pulse-green' : 'bg-terminal-green/30'
+          checked ? 'bg-accent animate-pulse-accent' : 'bg-text-muted/30'
         }`}
       />
       {label}
-      <span className="text-terminal-green/50">[{checked ? 'ON' : 'OFF'}]</span>
+      <span className="text-text-muted">[{checked ? 'ON' : 'OFF'}]</span>
     </button>
   );
 }

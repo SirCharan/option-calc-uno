@@ -50,7 +50,7 @@ export function TimeToExpiry({ value, onChange }: TimeToExpiryProps) {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-1">
-        <span className="text-terminal-dimgreen text-xs mr-2">
+        <span className="text-text-secondary text-xs mr-2">
           &gt; TIME_TO_EXPIRY:
         </span>
         {(['manual', 'calendar', 'quick'] as ExpiryMode[]).map((m) => (
@@ -109,7 +109,7 @@ export function TimeToExpiry({ value, onChange }: TimeToExpiryProps) {
             minDate={new Date()}
             dateFormat="yyyy-MM-dd"
             placeholderText="Select expiry date"
-            className="w-full bg-black border border-terminal-green/30 text-terminal-green font-mono text-sm px-3 py-1.5 focus:border-terminal-green focus:shadow-[0_0_5px_rgba(0,255,0,0.3)] focus:outline-none"
+            className="w-full bg-bg-primary border border-border text-text-primary font-mono text-sm px-3 py-1.5 rounded focus:border-accent/60 focus:shadow-[0_0_5px_rgba(0,204,136,0.15)] focus:outline-none"
           />
         </div>
       )}
@@ -124,7 +124,7 @@ export function TimeToExpiry({ value, onChange }: TimeToExpiryProps) {
         </div>
       )}
 
-      <div className="text-terminal-dimgreen text-xs ml-4">
+      <div className="text-text-secondary text-xs ml-4">
         &gt; T (years): {formatNumber(value, 6)}
       </div>
     </div>

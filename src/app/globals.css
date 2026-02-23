@@ -1,20 +1,35 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-terminal-green: #00FF00;
-  --color-terminal-darkgreen: #003300;
-  --color-terminal-red: #FF4444;
-  --color-terminal-darkred: #330000;
-  --color-terminal-amber: #FFBF00;
-  --color-terminal-black: #000000;
-  --color-terminal-gray: #111111;
-  --color-terminal-dimgreen: #00AA00;
-  --color-terminal-border: rgba(0, 255, 0, 0.12);
+  /* Backgrounds */
+  --color-bg-primary: #0a0a0f;
+  --color-bg-card: #111118;
+  --color-bg-elevated: #16161e;
+  --color-bg-hover: #1c1c26;
 
-  --font-mono: "Consolas", "Courier New", ui-monospace, monospace;
+  /* Text */
+  --color-text-primary: #e4e4e7;
+  --color-text-secondary: #8b8b96;
+  --color-text-muted: #55555e;
+
+  /* Accent — green used sparingly */
+  --color-accent: #00cc88;
+  --color-accent-bright: #00ffaa;
+  --color-accent-dim: #007755;
+
+  /* Semantic */
+  --color-positive: #00cc88;
+  --color-negative: #ff5566;
+  --color-warning: #ffbb33;
+
+  /* Borders */
+  --color-border: #222230;
+  --color-border-hover: #333345;
+
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", ui-monospace, monospace;
 
   --animate-cursor-blink: blink 1s step-end infinite;
-  --animate-pulse-green: pulseGreen 2s ease-in-out infinite;
+  --animate-pulse-accent: pulseAccent 2s ease-in-out infinite;
   --animate-spin-slow: spin 1s linear infinite;
 }
 
@@ -23,7 +38,7 @@
   50% { opacity: 0; }
 }
 
-@keyframes pulseGreen {
+@keyframes pulseAccent {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
@@ -33,28 +48,9 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scanline overlay */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.03) 0px,
-    rgba(0, 0, 0, 0.03) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-}
-
 * {
   scrollbar-width: thin;
-  scrollbar-color: #003300 #000000;
+  scrollbar-color: #222230 #0a0a0f;
 }
 
 *::-webkit-scrollbar {
@@ -62,22 +58,22 @@ body::after {
 }
 
 *::-webkit-scrollbar-track {
-  background: #000000;
+  background: #0a0a0f;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #003300;
+  background: #333345;
   border-radius: 3px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: #00AA00;
+  background: #444455;
 }
 
 body {
-  background: #000000;
-  color: #00FF00;
-  font-family: "Consolas", "Courier New", ui-monospace, monospace;
+  background: #0a0a0f;
+  color: #e4e4e7;
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", ui-monospace, monospace;
 }
 
 input, select, button, textarea {
@@ -94,40 +90,40 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* react-datepicker terminal theme overrides */
+/* react-datepicker dark theme overrides */
 .react-datepicker {
-  background-color: #000 !important;
-  border: 1px solid rgba(0, 255, 0, 0.3) !important;
-  font-family: "Consolas", "Courier New", monospace !important;
-  color: #00FF00 !important;
+  background-color: #111118 !important;
+  border: 1px solid #333345 !important;
+  font-family: "JetBrains Mono", "Consolas", monospace !important;
+  color: #e4e4e7 !important;
 }
 
 .react-datepicker__header {
-  background-color: #0a0a0a !important;
-  border-bottom: 1px solid rgba(0, 255, 0, 0.2) !important;
+  background-color: #16161e !important;
+  border-bottom: 1px solid #222230 !important;
 }
 
 .react-datepicker__current-month,
 .react-datepicker__day-name,
 .react-datepicker__day {
-  color: #00FF00 !important;
+  color: #e4e4e7 !important;
 }
 
 .react-datepicker__day:hover {
-  background-color: rgba(0, 255, 0, 0.2) !important;
+  background-color: rgba(0, 204, 136, 0.15) !important;
 }
 
 .react-datepicker__day--selected {
-  background-color: #00FF00 !important;
-  color: #000 !important;
+  background-color: #00cc88 !important;
+  color: #0a0a0f !important;
 }
 
 .react-datepicker__day--disabled {
-  color: #333 !important;
+  color: #55555e !important;
 }
 
 .react-datepicker__navigation-icon::before {
-  border-color: #00FF00 !important;
+  border-color: #8b8b96 !important;
 }
 
 .react-datepicker__triangle {

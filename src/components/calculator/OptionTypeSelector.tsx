@@ -13,7 +13,7 @@ export function OptionTypeSelector({
 }: OptionTypeSelectorProps) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-terminal-dimgreen text-xs">&gt; OPTION_TYPE:</span>
+      <span className="text-text-secondary text-xs">&gt; OPTION_TYPE:</span>
       <TerminalButton active={value === 'call'} onClick={() => onChange('call')}>
         CALL
       </TerminalButton>

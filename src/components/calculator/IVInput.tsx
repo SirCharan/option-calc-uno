@@ -29,8 +29,8 @@ export function IVInput({ value, onChange, currency }: IVInputProps) {
     <div className="space-y-2">
       <TerminalInput
         label="IMPLIED_VOLATILITY"
-        value={value ? (value * 100).toString() : ''}
-        onChange={(v) => onChange((parseFloat(v) || 0) / 100)}
+        value={value != null ? (Number(value) * 100).toString() : ''}
+        onChange={(v) => onChange(v === '' ? 0 : parseFloat(v) / 100)}
         type="number"
         placeholder="50.00"
         step="0.1"

@@ -24,8 +24,8 @@ export function StrategyManager() {
   };
 
   return (
-    <div className="space-y-3 border-t border-terminal-green/20 pt-3">
-      <div className="text-terminal-dimgreen text-xs">&gt; STRATEGIES</div>
+    <div className="space-y-3 border-t border-border pt-3">
+      <div className="text-text-secondary text-xs">&gt; STRATEGIES</div>
 
       {legs.length > 0 && (
         <>
@@ -59,11 +59,11 @@ export function StrategyManager() {
           {savedStrategies.map((s) => (
             <div
               key={s.id}
-              className="flex items-center justify-between border border-terminal-green/10 px-2 py-1"
+              className="flex items-center justify-between border border-border rounded px-2 py-1"
             >
               <div className="text-xs">
-                <span className="text-terminal-green">{s.name}</span>
-                <span className="text-terminal-dimgreen">
+                <span className="text-text-primary">{s.name}</span>
+                <span className="text-text-muted">
                   {' '}
                   ({s.legs.length} legs)
                 </span>

@@ -98,8 +98,8 @@ export function SharedParams({ params, onChange }: SharedParamsProps) {
       <div className="space-y-2">
         <TerminalInput
           label="IV"
-          value={params.impliedVolatility ? (params.impliedVolatility * 100).toString() : ''}
-          onChange={(v) => update('impliedVolatility', (parseFloat(v) || 0) / 100)}
+          value={params.impliedVolatility != null ? (Number(params.impliedVolatility) * 100).toString() : ''}
+          onChange={(v) => update('impliedVolatility', v === '' ? 0 : parseFloat(v) / 100)}
           type="number"
           placeholder="50.00"
           suffix="%"
@@ -121,8 +121,8 @@ export function SharedParams({ params, onChange }: SharedParamsProps) {
       <div>
         <TerminalInput
           label="RATE"
-          value={params.riskFreeRate ? (params.riskFreeRate * 100).toString() : ''}
-          onChange={(v) => update('riskFreeRate', (parseFloat(v) || 0) / 100)}
+          value={params.riskFreeRate != null ? (Number(params.riskFreeRate) * 100).toString() : ''}
+          onChange={(v) => update('riskFreeRate', v === '' ? 0 : parseFloat(v) / 100)}
           type="number"
           placeholder="10.00"
           step="0.1"
@@ -134,8 +134,8 @@ export function SharedParams({ params, onChange }: SharedParamsProps) {
       <div className="space-y-2">
         <TerminalInput
           label="EXPIRY"
-          value={params.timeToExpiry ? (params.timeToExpiry * 365).toFixed(1) : ''}
-          onChange={(v) => update('timeToExpiry', (parseFloat(v) || 0) / 365)}
+          value={params.timeToExpiry != null ? (Number(params.timeToExpiry) * 365).toFixed(1) : ''}
+          onChange={(v) => update('timeToExpiry', v === '' ? 0 : parseFloat(v) / 365)}
           type="number"
           placeholder="30"
           suffix="days"
@@ -151,7 +151,7 @@ export function SharedParams({ params, onChange }: SharedParamsProps) {
             </TerminalButton>
           ))}
         </div>
-        <div className="text-terminal-dimgreen text-[10px] ml-4">
+        <div className="text-text-secondary text-[10px] ml-4">
           T = {formatNumber(params.timeToExpiry, 6)} yr
         </div>
       </div>

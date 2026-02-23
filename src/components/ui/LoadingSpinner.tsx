@@ -14,7 +14,7 @@ export function LoadingSpinner({ text = 'Fetching' }: { text?: string }) {
   }, []);
 
   return (
-    <span className="text-terminal-green text-xs animate-pulse-green">
+    <span className="text-accent text-xs animate-pulse-accent">
       {text}... {frames[frame]}
     </span>
   );

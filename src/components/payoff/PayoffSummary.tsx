@@ -19,8 +19,8 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
           : formatUSD(result.maxProfit),
       color:
         result.maxProfit === 'Unlimited' || result.maxProfit > 0
-          ? 'text-terminal-green'
-          : 'text-terminal-red',
+          ? 'text-positive'
+          : 'text-negative',
     },
     {
       label: 'MAX LOSS',
@@ -28,12 +28,12 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
         result.maxLoss === 'Unlimited'
           ? 'Unlimited'
           : '-' + formatUSD(Math.abs(result.maxLoss as number)),
-      color: 'text-terminal-red',
+      color: 'text-negative',
     },
     ...result.breakevens.map((b, i) => ({
       label: `BREAKEVEN${result.breakevens.length > 1 ? ` ${i + 1}` : ''}`,
       value: formatUSD(b),
-      color: 'text-terminal-amber',
+      color: 'text-warning',
     })),
   ];
 
@@ -42,9 +42,9 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="border border-terminal-border px-4 py-2.5 bg-terminal-gray/20 flex-1 min-w-[140px]"
+          className="border border-border rounded-lg px-4 py-2.5 bg-bg-card flex-1 min-w-[140px]"
         >
-          <div className="text-terminal-dimgreen/50 text-[9px] tracking-widest mb-1">
+          <div className="text-text-muted text-[9px] tracking-widest mb-1">
             {item.label}
           </div>
           <div className={`text-sm font-bold tabular-nums ${item.color}`}>

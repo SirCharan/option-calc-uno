@@ -19,7 +19,7 @@ interface PayoffChartProps {
 export function PayoffChart({ result }: PayoffChartProps) {
   if (!result || result.points.length === 0) {
     return (
-      <div className="text-terminal-dimgreen/40 text-xs text-center py-16">
+      <div className="text-text-muted text-xs text-center py-16">
         &gt; Add option legs to generate payoff diagram
       </div>
     );
@@ -33,7 +33,6 @@ export function PayoffChart({ result }: PayoffChartProps) {
       pnl: Math.round(p.totalPayoff * 100) / 100,
     }));
 
-  // Find the zero crossing offset for the gradient
   const minPnl = Math.min(...data.map((d) => d.pnl));
   const maxPnl = Math.max(...data.map((d) => d.pnl));
   const range = maxPnl - minPnl;
@@ -44,25 +43,25 @@ export function PayoffChart({ result }: PayoffChartProps) {
       <AreaChart data={data} margin={{ top: 10, right: 20, bottom: 20, left: 20 }}>
         <defs>
           <linearGradient id="pnlGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#00FF00" stopOpacity={0.3} />
+            <stop offset="0%" stopColor="#00cc88" stopOpacity={0.3} />
             <stop
               offset={`${Math.max(0, Math.min(100, zeroOffset * 100))}%`}
-              stopColor="#00FF00"
+              stopColor="#00cc88"
               stopOpacity={0.05}
             />
             <stop
               offset={`${Math.max(0, Math.min(100, zeroOffset * 100))}%`}
-              stopColor="#FF4444"
+              stopColor="#ff5566"
               stopOpacity={0.05}
             />
-            <stop offset="100%" stopColor="#FF4444" stopOpacity={0.2} />
+            <stop offset="100%" stopColor="#ff5566" stopOpacity={0.2} />
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#003300" strokeOpacity={0.5} />
+        <CartesianGrid strokeDasharray="3 3" stroke="#222230" strokeOpacity={0.8} />
         <XAxis
           dataKey="spot"
-          stroke="#003300"
-          tick={{ fill: '#00AA00', fontSize: 10 }}
+          stroke="#333345"
+          tick={{ fill: '#8b8b96', fontSize: 10 }}
           tickFormatter={(v: number) =>
             v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v.toFixed(0)
           }
@@ -70,13 +69,13 @@ export function PayoffChart({ result }: PayoffChartProps) {
             value: 'Spot Price',
             position: 'insideBottom',
             offset: -10,
-            fill: '#00AA00',
+            fill: '#8b8b96',
             fontSize: 10,
           }}
         />
         <YAxis
-          stroke="#003300"
-          tick={{ fill: '#00AA00', fontSize: 10 }}
+          stroke="#333345"
+          tick={{ fill: '#8b8b96', fontSize: 10 }}
           tickFormatter={(v: number) =>
             v >= 1000 || v <= -1000
               ? `${(v / 1000).toFixed(1)}k`
@@ -86,20 +85,21 @@ export function PayoffChart({ result }: PayoffChartProps) {
             value: 'P/L',
             angle: -90,
             position: 'insideLeft',
-            fill: '#00AA00',
+            fill: '#8b8b96',
             fontSize: 10,
           }}
         />
         <Tooltip
           contentStyle={{
-            backgroundColor: '#000',
-            border: '1px solid rgba(0,255,0,0.3)',
+            backgroundColor: '#16161e',
+            border: '1px solid #333345',
+            borderRadius: '6px',
             fontFamily: 'monospace',
             fontSize: 11,
             padding: '8px 12px',
           }}
-          labelStyle={{ color: '#00AA00', fontSize: 10, marginBottom: 4 }}
-          itemStyle={{ color: '#00FF00' }}
+          labelStyle={{ color: '#8b8b96', fontSize: 10, marginBottom: 4 }}
+          itemStyle={{ color: '#00cc88' }}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           formatter={(value: any) => [
             `$${Number(value ?? 0).toLocaleString()}`,
@@ -112,7 +112,7 @@ export function PayoffChart({ result }: PayoffChartProps) {
         />
         <ReferenceLine
           y={0}
-          stroke="#00FF00"
+          stroke="#8b8b96"
           strokeDasharray="5 5"
           strokeOpacity={0.3}
         />
@@ -120,12 +120,12 @@ export function PayoffChart({ result }: PayoffChartProps) {
           <ReferenceLine
             key={i}
             x={Math.round(b * 100) / 100}
-            stroke="#FFBF00"
+            stroke="#ffbb33"
             strokeDasharray="3 3"
-            strokeOpacity={0.4}
+            strokeOpacity={0.5}
             label={{
               value: `BE`,
-              fill: '#FFBF00',
+              fill: '#ffbb33',
               fontSize: 9,
               position: 'top',
             }}
@@ -134,11 +134,11 @@ export function PayoffChart({ result }: PayoffChartProps) {
         <Area
           type="monotone"
           dataKey="pnl"
-          stroke="#00FF00"
+          stroke="#00cc88"
           strokeWidth={2}
           fill="url(#pnlGradient)"
           dot={false}
-          activeDot={{ r: 4, fill: '#00FF00', stroke: '#000', strokeWidth: 2 }}
+          activeDot={{ r: 4, fill: '#00cc88', stroke: '#0a0a0f', strokeWidth: 2 }}
         />
       </AreaChart>
     </ResponsiveContainer>

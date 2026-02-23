@@ -20,30 +20,40 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
   const [direction, setDirection] = useState<'long' | 'short'>('long');
   const [quantity, setQuantity] = useState(1);
   const [strikePrice, setStrikePrice] = useState(sharedParams.spotPrice || 0);
+  const [customPremium, setCustomPremium] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const hasCustomPremium = customPremium !== '' && parseFloat(customPremium) >= 0;
 
   const handleAdd = () => {
     if (strikePrice <= 0) {
       setError('Strike price must be positive');
       return;
     }
-    if (
-      sharedParams.spotPrice <= 0 ||
-      sharedParams.impliedVolatility <= 0 ||
-      sharedParams.timeToExpiry <= 0
-    ) {
-      setError('Set shared parameters (spot, IV, expiry) first');
-      return;
-    }
 
-    const premium = calculateOption({
-      spotPrice: sharedParams.spotPrice,
-      strikePrice,
-      riskFreeRate: sharedParams.riskFreeRate,
-      impliedVolatility: sharedParams.impliedVolatility,
-      timeToExpiry: sharedParams.timeToExpiry,
-      optionType,
-    }).price;
+    let premium: number;
+
+    if (hasCustomPremium) {
+      premium = parseFloat(customPremium);
+    } else {
+      if (
+        sharedParams.spotPrice <= 0 ||
+        sharedParams.impliedVolatility <= 0 ||
+        sharedParams.timeToExpiry <= 0
+      ) {
+        setError('Set shared parameters (spot, IV, expiry) or enter a custom premium');
+        return;
+      }
+
+      premium = calculateOption({
+        spotPrice: sharedParams.spotPrice,
+        strikePrice,
+        riskFreeRate: sharedParams.riskFreeRate,
+        impliedVolatility: sharedParams.impliedVolatility,
+        timeToExpiry: sharedParams.timeToExpiry,
+        optionType,
+      }).price;
+    }
 
     onAdd({
       id: generateId(),
@@ -60,7 +70,7 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
   };
 
   return (
-    <div className="space-y-3 border border-terminal-green/20 p-3 bg-terminal-green/5">
+    <div className="space-y-3 border border-border rounded p-3 bg-bg-elevated">
       <div className="flex gap-1.5 flex-wrap">
         <TerminalButton
           active={optionType === 'call'}
@@ -74,7 +84,7 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
         >
           PUT
         </TerminalButton>
-        <span className="w-px bg-terminal-green/20 mx-1" />
+        <span className="w-px bg-border mx-1" />
         <TerminalButton
           active={direction === 'long'}
           onClick={() => setDirection('long')}
@@ -89,7 +99,7 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
         </TerminalButton>
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         <TerminalInput
           label="STRIKE"
           value={strikePrice || ''}
@@ -104,6 +114,14 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
           onChange={(v) => setQuantity(parseInt(v) || 1)}
           type="number"
           min={1}
+        />
+        <TerminalInput
+          label="PREMIUM"
+          value={customPremium}
+          onChange={setCustomPremium}
+          type="number"
+          placeholder="auto"
+          step="0.01"
         />
       </div>
 

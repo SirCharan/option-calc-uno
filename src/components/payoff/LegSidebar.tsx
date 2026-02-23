@@ -26,35 +26,35 @@ export function LegSidebar({ sharedParams }: LegSidebarProps) {
     <div className="space-y-4">
       <div className="space-y-2">
         {legs.length === 0 && !showForm && (
-          <div className="text-terminal-dimgreen text-xs py-2">
+          <div className="text-text-muted text-xs py-2">
             &gt; No legs added yet.
           </div>
         )}
         {legs.map((leg, i) => (
           <div
             key={leg.id}
-            className="flex items-center justify-between border border-terminal-green/15 px-3 py-2 hover:border-terminal-green/30 transition-colors"
+            className="flex items-center justify-between border border-border rounded px-3 py-2 hover:border-border-hover transition-colors"
           >
             <div className="text-xs space-y-0.5">
               <div className="flex items-center gap-2">
-                <span className="text-terminal-dimgreen">
+                <span className="text-text-muted">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
                   className={
                     leg.direction === 'long'
-                      ? 'text-terminal-green'
-                      : 'text-terminal-red'
+                      ? 'text-positive'
+                      : 'text-negative'
                   }
                 >
                   {leg.direction.toUpperCase()}
                 </span>
-                <span className="text-terminal-green">
+                <span className="text-text-primary">
                   {leg.optionType.toUpperCase()}
                 </span>
-                <span className="text-terminal-dimgreen">x{leg.quantity}</span>
+                <span className="text-text-muted">x{leg.quantity}</span>
               </div>
-              <div className="text-terminal-dimgreen ml-6">
+              <div className="text-text-secondary ml-6">
                 K: {formatUSD(leg.strikePrice)} | P: {formatUSD(leg.premium)}
               </div>
             </div>

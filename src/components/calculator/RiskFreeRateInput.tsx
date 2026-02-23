@@ -11,8 +11,8 @@ export function RiskFreeRateInput({ value, onChange }: RiskFreeRateInputProps) {
   return (
     <TerminalInput
       label="RISK_FREE_RATE"
-      value={value ? (value * 100).toString() : ''}
-      onChange={(v) => onChange((parseFloat(v) || 0) / 100)}
+      value={value != null ? (Number(value) * 100).toString() : ''}
+      onChange={(v) => onChange(v === '' ? 0 : parseFloat(v) / 100)}
       type="number"
       placeholder="10.00"
       step="0.1"

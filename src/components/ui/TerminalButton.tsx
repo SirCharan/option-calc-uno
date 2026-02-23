@@ -22,16 +22,16 @@ export function TerminalButton({
   type = 'button',
 }: TerminalButtonProps) {
   const base =
-    'px-3 py-1.5 text-xs font-mono border transition-all disabled:opacity-30 disabled:cursor-not-allowed';
+    'px-3 py-1.5 text-xs font-mono border rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: `border-terminal-green/50 text-terminal-green hover:bg-terminal-green/10 hover:shadow-[0_0_5px_rgba(0,255,0,0.2)] active:bg-terminal-green/20 ${
-      active ? 'bg-terminal-green/20 shadow-[0_0_5px_rgba(0,255,0,0.2)] border-terminal-green' : ''
+    primary: `border-border text-text-secondary hover:bg-accent/10 hover:text-accent hover:border-accent/30 active:bg-accent/20 ${
+      active ? 'bg-accent/15 text-accent border-accent/40' : ''
     }`,
     danger:
-      'border-terminal-red/50 text-terminal-red hover:bg-terminal-red/10 hover:shadow-[0_0_5px_rgba(255,68,68,0.2)] active:bg-terminal-red/20',
+      'border-border text-text-secondary hover:bg-negative/10 hover:text-negative hover:border-negative/30 active:bg-negative/20',
     ghost:
-      'border-transparent text-terminal-dimgreen hover:text-terminal-green hover:border-terminal-green/30',
+      'border-transparent text-text-muted hover:text-text-secondary hover:border-border',
   };
 
   return (
