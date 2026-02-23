@@ -38,13 +38,13 @@ export function PayoffSummary({ result }: PayoffSummaryProps) {
   ];
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-4">
       {items.map((item) => (
         <div
           key={item.label}
           className="border border-border rounded-lg px-4 py-2.5 bg-bg-card flex-1 min-w-[140px]"
         >
-          <div className="text-text-muted text-[9px] tracking-widest mb-1">
+          <div className="text-text-muted text-xs tracking-widest mb-1.5">
             {item.label}
           </div>
           <div className={`text-sm font-bold tabular-nums ${item.color}`}>

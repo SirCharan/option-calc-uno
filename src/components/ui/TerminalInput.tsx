@@ -30,7 +30,7 @@ export function TerminalInput({
   return (
     <div className="space-y-1">
       <label className="flex items-center gap-2">
-        <span className="text-text-secondary text-[11px] shrink-0 min-w-fit">
+        <span className="text-text-secondary text-xs shrink-0 min-w-fit">
           {prefix} {label}:
         </span>
         <div className="flex items-center gap-1.5 flex-1">
@@ -45,14 +45,14 @@ export function TerminalInput({
             className="w-full bg-bg-primary border border-border text-text-primary font-mono text-sm px-3 py-2 rounded focus:border-accent/60 focus:shadow-[0_0_8px_rgba(0,204,136,0.12)] focus:outline-none disabled:opacity-25 disabled:cursor-not-allowed placeholder:text-text-muted"
           />
           {suffix && (
-            <span className="text-text-muted text-[11px] shrink-0">
+            <span className="text-text-muted text-xs shrink-0">
               {suffix}
             </span>
           )}
         </div>
       </label>
       {error && (
-        <p className="text-negative text-[11px] ml-4">[ERROR]: {error}</p>
+        <p className="text-negative text-xs ml-4">[ERROR]: {error}</p>
       )}
     </div>
   );

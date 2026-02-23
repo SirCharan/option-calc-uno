@@ -55,11 +55,11 @@ export function StrategyManager() {
       )}
 
       {savedStrategies.length > 0 && (
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           {savedStrategies.map((s) => (
             <div
               key={s.id}
-              className="flex items-center justify-between border border-border rounded px-2 py-1"
+              className="flex items-center justify-between border border-border rounded px-3 py-1.5"
             >
               <div className="text-xs">
                 <span className="text-text-primary">{s.name}</span>
@@ -68,7 +68,7 @@ export function StrategyManager() {
                   ({s.legs.length} legs)
                 </span>
               </div>
-              <div className="flex gap-1">
+              <div className="flex gap-1.5">
                 <TerminalButton
                   variant="ghost"
                   onClick={() => loadStrategy(s.id)}

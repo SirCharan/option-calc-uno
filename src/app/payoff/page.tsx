@@ -31,7 +31,7 @@ export default function PayoffPage() {
 
       {/* Main content */}
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="lg:w-80 flex-shrink-0">
+        <div className="lg:w-96 flex-shrink-0">
           <TerminalContainer title="OPTION_LEGS">
             <LegSidebar sharedParams={sharedParams} />
           </TerminalContainer>

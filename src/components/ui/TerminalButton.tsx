@@ -6,6 +6,7 @@ interface TerminalButtonProps {
   children: ReactNode;
   onClick?: () => void;
   variant?: 'primary' | 'danger' | 'ghost';
+  size?: 'sm' | 'md';
   disabled?: boolean;
   active?: boolean;
   className?: string;
@@ -16,13 +17,17 @@ export function TerminalButton({
   children,
   onClick,
   variant = 'primary',
+  size = 'md',
   disabled,
   active,
   className = '',
   type = 'button',
 }: TerminalButtonProps) {
-  const base =
-    'px-3 py-1.5 text-xs font-mono border rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed';
+  const sizes = {
+    sm: 'px-2 py-1 text-xs',
+    md: 'px-3 py-1.5 text-xs',
+  };
+  const base = `${sizes[size]} font-mono border rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed`;
 
   const variants = {
     primary: `border-border text-text-secondary hover:bg-accent/10 hover:text-accent hover:border-accent/30 active:bg-accent/20 ${

@@ -21,7 +21,7 @@ export function TerminalContainer({
         <span className="w-2 h-2 rounded-full bg-negative/60" />
         <span className="w-2 h-2 rounded-full bg-warning/60" />
         <span className="w-2 h-2 rounded-full bg-accent/60" />
-        <span className="text-text-muted text-[10px] ml-2 tracking-widest uppercase">
+        <span className="text-text-muted text-xs ml-2 tracking-widest uppercase">
           {title}
         </span>
       </div>

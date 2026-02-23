@@ -71,27 +71,30 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
 
   return (
     <div className="space-y-3 border border-border rounded p-3 bg-bg-elevated">
-      <div className="flex gap-1.5 flex-wrap">
+      <div className="grid grid-cols-4 gap-1.5">
         <TerminalButton
+          size="sm"
           active={optionType === 'call'}
           onClick={() => setOptionType('call')}
         >
           CALL
         </TerminalButton>
         <TerminalButton
+          size="sm"
           active={optionType === 'put'}
           onClick={() => setOptionType('put')}
         >
           PUT
         </TerminalButton>
-        <span className="w-px bg-border mx-1" />
         <TerminalButton
+          size="sm"
           active={direction === 'long'}
           onClick={() => setDirection('long')}
         >
           LONG
         </TerminalButton>
         <TerminalButton
+          size="sm"
           active={direction === 'short'}
           onClick={() => setDirection('short')}
         >
@@ -99,22 +102,24 @@ export function LegForm({ sharedParams, onAdd, onCancel }: LegFormProps) {
         </TerminalButton>
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
-        <TerminalInput
-          label="STRIKE"
-          value={strikePrice || ''}
-          onChange={(v) => setStrikePrice(parseFloat(v) || 0)}
-          type="number"
-          placeholder="0.00"
-          step="0.01"
-        />
-        <TerminalInput
-          label="QTY"
-          value={quantity}
-          onChange={(v) => setQuantity(parseInt(v) || 1)}
-          type="number"
-          min={1}
-        />
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          <TerminalInput
+            label="STRIKE"
+            value={strikePrice || ''}
+            onChange={(v) => setStrikePrice(parseFloat(v) || 0)}
+            type="number"
+            placeholder="0.00"
+            step="0.01"
+          />
+          <TerminalInput
+            label="QTY"
+            value={quantity}
+            onChange={(v) => setQuantity(parseInt(v) || 1)}
+            type="number"
+            min={1}
+          />
+        </div>
         <TerminalInput
           label="PREMIUM"
           value={customPremium}

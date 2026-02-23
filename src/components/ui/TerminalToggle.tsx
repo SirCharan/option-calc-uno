@@ -18,7 +18,7 @@ export function TerminalToggle({
       type="button"
       onClick={() => !disabled && onChange(!checked)}
       disabled={disabled}
-      className={`flex items-center gap-2 text-xs font-mono px-2 py-1 border rounded transition-all ${
+      className={`flex items-center gap-2 text-xs font-mono px-3 py-1.5 border rounded transition-all ${
         checked
           ? 'border-accent/40 bg-accent/10 text-accent'
           : 'border-border text-text-muted hover:border-border-hover hover:text-text-secondary'

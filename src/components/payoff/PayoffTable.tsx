@@ -21,18 +21,18 @@ export function PayoffTable({ result, legCount }: PayoffTableProps) {
       <table className="w-full text-xs font-mono">
         <thead>
           <tr className="border-b border-border">
-            <th className="text-left text-text-muted px-3 py-2 text-[10px] tracking-wider">
+            <th className="text-left text-text-muted px-3 py-2 text-xs tracking-wider">
               SPOT
             </th>
             {Array.from({ length: legCount }).map((_, i) => (
               <th
                 key={i}
-                className="text-right text-text-muted px-3 py-2 text-[10px] tracking-wider"
+                className="text-right text-text-muted px-3 py-2 text-xs tracking-wider"
               >
                 LEG_{i + 1}
               </th>
             ))}
-            <th className="text-right text-text-muted px-3 py-2 text-[10px] tracking-wider">
+            <th className="text-right text-text-muted px-3 py-2 text-xs tracking-wider">
               TOTAL
             </th>
           </tr>

@@ -35,7 +35,7 @@ export function LegSidebar({ sharedParams }: LegSidebarProps) {
             key={leg.id}
             className="flex items-center justify-between border border-border rounded px-3 py-2 hover:border-border-hover transition-colors"
           >
-            <div className="text-xs space-y-0.5">
+            <div className="text-xs space-y-1">
               <div className="flex items-center gap-2">
                 <span className="text-text-muted">
                   {String(i + 1).padStart(2, '0')}
@@ -61,7 +61,7 @@ export function LegSidebar({ sharedParams }: LegSidebarProps) {
             <TerminalButton
               variant="danger"
               onClick={() => removeLeg(leg.id)}
-              className="!px-2 !py-0.5"
+              size="sm"
             >
               X
             </TerminalButton>

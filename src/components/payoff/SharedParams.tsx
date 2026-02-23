@@ -145,13 +145,13 @@ export function SharedParams({ params, onChange }: SharedParamsProps) {
             <TerminalButton
               key={opt.label}
               onClick={() => handleQuick(opt)}
-              className="!px-2 !py-0.5 !text-[10px]"
+              size="sm"
             >
               {opt.label}
             </TerminalButton>
           ))}
         </div>
-        <div className="text-text-secondary text-[10px] ml-4">
+        <div className="text-text-secondary text-xs ml-4">
           T = {formatNumber(params.timeToExpiry, 6)} yr
         </div>
       </div>

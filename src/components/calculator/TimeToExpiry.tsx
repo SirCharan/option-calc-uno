@@ -65,7 +65,7 @@ export function TimeToExpiry({ value, onChange }: TimeToExpiryProps) {
       </div>
 
       {mode === 'manual' && (
-        <div className="grid grid-cols-4 gap-2 ml-4">
+        <div className="grid grid-cols-2 gap-3 ml-4">
           <TerminalInput
             label="D"
             value={manual.days || ''}
